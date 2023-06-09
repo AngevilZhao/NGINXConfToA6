@@ -1,0 +1,32 @@
+.sp {
+    white-space: pre-wrap;
+    list-style-type: decimal-leading-zero;
+}
+
+.demo{
+    display:flex;
+    height:200px;
+}
+
+.left{
+    min-width:200px;
+    max-width: 1000px;
+    width: 800px;
+    background: #ccc;
+    resize:horizontal;
+    overflow:scroll;
+    margin-right: 10px;
+    opacity:1;
+    height: 1000px;
+}
+
+.left::-webkit-scrollbar {
+    width: 20px; // 滚动条宽度，我们就是靠拖拽滚动条来实现分屏宽度变化的
+height: inherit;
+}
+
+.right{
+    background: #f0f;
+    margin-left: 10px;
+    flex: 1
+}

@@ -1,0 +1,6989 @@
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/test/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 17
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 21
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: ssl_certificate
+  file: nginx.conf
+  line: 8
+- directive: ssl_certificate_key
+  file: nginx.conf
+  line: 9
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 21
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks:
+- directive: ssl_certificate
+  file: nginx.conf
+  line: 8
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXLocation:
+- apisix_router:
+    hosts:
+    - abc.test.com
+    - def.t.cn
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers:
+          connection: ''
+          host: $http_host
+          proxy-t1: proxy-v1
+          x-forwarded-for: $proxy_add_x_forwarded_for
+        uri: /test/$uri
+      response-rewrite:
+        disable: false
+        headers:
+          mytestheader: hahadfeafe
+    priority: 20
+    status: 1
+    timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+    uris:
+    - /test/*
+  directive: location
+  file: nginx.conf
+  line: 21
+  value:
+    ngx_url: /test/
+    ngx_url_op: null
+    proxy_pass_upstream_format: 1
+    proxy_pass_upstream_name: vua-dashboar
+    proxy_timeout:
+      connect: '60'
+      read: '15'
+      send: '6'
+- apisix_router:
+    hosts:
+    - domain2.com
+    - www.domain2.com
+    methods:
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+    plugins:
+      proxy-rewrite:
+        disable: false
+        headers: {}
+        uri: /$uri
+      response-rewrite:
+        disable: false
+    priority: 20
+    status: 1
+    timeout:
+      connect: null
+      read: null
+      send: null
+    uris:
+    - /*
+  directive: location
+  file: server1.conf
+  line: 7
+  value:
+    ngx_url: /
+    ngx_url_op: null
+    proxy_pass_upstream_format: 0
+    proxy_pass_upstream_name: 127.0.0.1:808
+    proxy_timeout:
+      connect: null
+      read: null
+      send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    ngx_hosts: &id001
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts: &id002
+        - abc.test.com
+        - def.t.cn
+        methods: &id003
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: &id004
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: &id005
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout: &id006
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris: &id007
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    ngx_hosts: *id001
+    ngx_locations:
+    - apisix_router:
+        hosts: *id002
+        methods: *id003
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: *id004
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: *id005
+        priority: 20
+        status: 1
+        timeout: *id006
+        uris: *id007
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      status: 1
+    ngx_hosts: &id001
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts: &id002
+        - abc.test.com
+        - def.t.cn
+        methods: &id003
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: &id004
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: &id005
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout: &id006
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris: &id007
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      status: 1
+    ngx_hosts: *id001
+    ngx_locations:
+    - apisix_router:
+        hosts: *id002
+        methods: *id003
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: *id004
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: *id005
+        priority: 20
+        status: 1
+        timeout: *id006
+        uris: *id007
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN CERTIFICATE-----
+
+        MIIDfjCCAmYCCQDmbILwhQaPEjANBgkqhkiG9w0BAQUFADCBgDELMAkGA1UEBhMC
+
+        Q04xEDAOBgNVBAgMB0JlaUppbmcxEDAOBgNVBAcMB0JlaUppbmcxEjAQBgNVBAoM
+
+        CU15Q29tcGFueTEVMBMGA1UEAwwMd3d3LnRlc3QuY29tMSIwIAYJKoZIhvcNAQkB
+
+        FhNhZG1pbkBNeUNvbXBhbnkuY29tMB4XDTIyMTIyMzAxNDQwMloXDTIzMTIyMzAx
+
+        NDQwMlowgYAxCzAJBgNVBAYTAkNOMRAwDgYDVQQIDAdCZWlKaW5nMRAwDgYDVQQH
+
+        DAdCZWlKaW5nMRIwEAYDVQQKDAlNeUNvbXBhbnkxFTATBgNVBAMMDHd3dy50ZXN0
+
+        LmNvbTEiMCAGCSqGSIb3DQEJARYTYWRtaW5ATXlDb21wYW55LmNvbTCCASIwDQYJ
+
+        KoZIhvcNAQEBBQADggEPADCCAQoCggEBAKsqyXGpXr3R1AqZGEAKD33VxcjNRjm3
+
+        enyDWdSRMtNicLIVet+9QHq9ylCV3WaemGXdfj55JxVuI6W0E7a9jlWADQzDS6/U
+
+        o31cZafhbiNm848+qmslSKCtiOM1Zt6EfiPscrUP1V8z25G1nuLeiflRY1FpBB0S
+
+        6K4cBEXEWynxcmUNb27w9WaI3Dyl2uTB7SCoWf+iRCpYLQKK0GNVqWZbzIFL33iI
+
+        ZrQMNcRWoaA7wfxJHRYHivfBdA9nW11jYrf0l7QBWEEbZy5eeAxFaU+WAkDv8l69
+
+        elRXBIAnwPD8ZntiBcqgAWhnvWnSgSgv86/htHgvtTbyV607df3P1KcCAwEAATAN
+
+        BgkqhkiG9w0BAQUFAAOCAQEANQbtYFtIBs/nPKWtCPVud8GO5sqOMrWzSoxuCra4
+
+        hup4VdUq7QjY8rfyNTyRIaN37rC6uG6saHxdMRJJ79NfXFtldmZRdmQPGq6Vbo6C
+
+        EVSVveAYmHr0n3rz6RL/DXeR+ldddpySYluYC9ibPfEIbSJtQV8le4T1eTcv+/a7
+
+        7kFL+mhm5/joJ/LUhft+1Cv4UooI98Guvst+VwA9zLgL5RDzbLrGgXs4Ky9ak96e
+
+        LL9G+Z/PCeMNshmQOYXq9qTVXdGXpUEu8/bzEBvFLBMvc9ujt8shKxkmdfGVXWF6
+
+        CSitMjuO1Gtj35PP5WD7QYgjQARgESxISrCp9UmzXW/hfg==
+
+        -----END CERTIFICATE-----
+
+        '
+      status: 1
+    ngx_hosts: &id001
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts: &id002
+        - abc.test.com
+        - def.t.cn
+        methods: &id003
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: &id004
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: &id005
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout: &id006
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris: &id007
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN CERTIFICATE-----
+
+        MIIDfjCCAmYCCQDmbILwhQaPEjANBgkqhkiG9w0BAQUFADCBgDELMAkGA1UEBhMC
+
+        Q04xEDAOBgNVBAgMB0JlaUppbmcxEDAOBgNVBAcMB0JlaUppbmcxEjAQBgNVBAoM
+
+        CU15Q29tcGFueTEVMBMGA1UEAwwMd3d3LnRlc3QuY29tMSIwIAYJKoZIhvcNAQkB
+
+        FhNhZG1pbkBNeUNvbXBhbnkuY29tMB4XDTIyMTIyMzAxNDQwMloXDTIzMTIyMzAx
+
+        NDQwMlowgYAxCzAJBgNVBAYTAkNOMRAwDgYDVQQIDAdCZWlKaW5nMRAwDgYDVQQH
+
+        DAdCZWlKaW5nMRIwEAYDVQQKDAlNeUNvbXBhbnkxFTATBgNVBAMMDHd3dy50ZXN0
+
+        LmNvbTEiMCAGCSqGSIb3DQEJARYTYWRtaW5ATXlDb21wYW55LmNvbTCCASIwDQYJ
+
+        KoZIhvcNAQEBBQADggEPADCCAQoCggEBAKsqyXGpXr3R1AqZGEAKD33VxcjNRjm3
+
+        enyDWdSRMtNicLIVet+9QHq9ylCV3WaemGXdfj55JxVuI6W0E7a9jlWADQzDS6/U
+
+        o31cZafhbiNm848+qmslSKCtiOM1Zt6EfiPscrUP1V8z25G1nuLeiflRY1FpBB0S
+
+        6K4cBEXEWynxcmUNb27w9WaI3Dyl2uTB7SCoWf+iRCpYLQKK0GNVqWZbzIFL33iI
+
+        ZrQMNcRWoaA7wfxJHRYHivfBdA9nW11jYrf0l7QBWEEbZy5eeAxFaU+WAkDv8l69
+
+        elRXBIAnwPD8ZntiBcqgAWhnvWnSgSgv86/htHgvtTbyV607df3P1KcCAwEAATAN
+
+        BgkqhkiG9w0BAQUFAAOCAQEANQbtYFtIBs/nPKWtCPVud8GO5sqOMrWzSoxuCra4
+
+        hup4VdUq7QjY8rfyNTyRIaN37rC6uG6saHxdMRJJ79NfXFtldmZRdmQPGq6Vbo6C
+
+        EVSVveAYmHr0n3rz6RL/DXeR+ldddpySYluYC9ibPfEIbSJtQV8le4T1eTcv+/a7
+
+        7kFL+mhm5/joJ/LUhft+1Cv4UooI98Guvst+VwA9zLgL5RDzbLrGgXs4Ky9ak96e
+
+        LL9G+Z/PCeMNshmQOYXq9qTVXdGXpUEu8/bzEBvFLBMvc9ujt8shKxkmdfGVXWF6
+
+        CSitMjuO1Gtj35PP5WD7QYgjQARgESxISrCp9UmzXW/hfg==
+
+        -----END CERTIFICATE-----
+
+        '
+      status: 1
+    ngx_hosts: *id001
+    ngx_locations:
+    - apisix_router:
+        hosts: *id002
+        methods: *id003
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: *id004
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: *id005
+        priority: 20
+        status: 1
+        timeout: *id006
+        uris: *id007
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      status: 1
+    ngx_hosts: &id001
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts: &id002
+        - abc.test.com
+        - def.t.cn
+        methods: &id003
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: &id004
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: &id005
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout: &id006
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris: &id007
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      status: 1
+    ngx_hosts: *id001
+    ngx_locations:
+    - apisix_router:
+        hosts: *id002
+        methods: *id003
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: *id004
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers: *id005
+        priority: 20
+        status: 1
+        timeout: *id006
+        uris: *id007
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: /Users/11133435/PycharmProjects/NGINXConfToA6/tests/test_cases/t1/nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              a-test: helloA
+              b-test: helloB
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              a-test: helloA
+              b-test: helloB
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
+NGINXServer:
+- directive: server
+  file: nginx.conf
+  line: 2
+  value:
+    apisix_ssl:
+      cert: '-----BEGIN RSA PRIVATE KEY-----
+
+        MIIEpAIBAAKCAQEAqyrJcalevdHUCpkYQAoPfdXFyM1GObd6fINZ1JEy02JwshV6
+
+        371Aer3KUJXdZp6YZd1+PnknFW4jpbQTtr2OVYANDMNLr9SjfVxlp+FuI2bzjz6q
+
+        ayVIoK2I4zVm3oR+I+xytQ/VXzPbkbWe4t6J+VFjUWkEHRLorhwERcRbKfFyZQ1v
+
+        bvD1ZojcPKXa5MHtIKhZ/6JEKlgtAorQY1WpZlvMgUvfeIhmtAw1xFahoDvB/Ekd
+
+        FgeK98F0D2dbXWNit/SXtAFYQRtnLl54DEVpT5YCQO/yXr16VFcEgCfA8Pxme2IF
+
+        yqABaGe9adKBKC/zr+G0eC+1NvJXrTt1/c/UpwIDAQABAoIBAQCgnkPt7ptC0HWD
+
+        hGnnHgmvcTxp04aEfpHn6XIQMDhbd9J8qf9lmLe69gG1YQwjUct8Oz5N7W4pg/Lb
+
+        eYHOR04bGVAlm9WYJ5dK+btCsB2kBuWik5FjfdcLQAxl+SSQxg+AMk7pbPQyo/z0
+
+        XFO+XElotWDXcg40IhxJ1WyE818AmVJ8X86fV7I6Tx4TzCMIyu4XzUjId2ak8YgA
+
+        6X7esuxugKpkRNXW/LW+wkzAUXM6y1SpGHg1K72PA+H10NbINwuyWoxH3taj0hVJ
+
+        b4YJrhNIdlQBDqhXwScZyQC5g/WNogU0MrIgLg6odEnU9l4o34VPy7mfTVZ/0/PY
+
+        5HzF1e7BAoGBANFmkMmLzMi7972PFKp2yyT2GaqbbbVWDeUnBs6htuY2oqDFMNcs
+
+        81ZlRvQttc4qZqq/K1j8XftoDWwx7ZJ3aj7DM6nLGjaRKstYvrHDzNFFzNAHaUNG
+
+        D6Xb4enbHFmm2uzq3o+tZfQDgz7R3iDCSycNhRTKOAEyzCwHrlctv+J3AoGBANFC
+
+        FIim2M5Fo88VKP4OerICVM3Sc1GtXiqTL57qXatPtInEYmO8EuRRbzsquI41PbPf
+
+        V31LKFJIX3b+rKSA2Cni5Pv8hXac2LfksJo+oUBiqXdDGP+TuSprODFavKG4Lbwb
+
+        7qzs6cyx2Wuhml18vXxWfus2Wfx57X31Blt4hntRAoGAMTIckA1VJk/q61EDNO1F
+
+        2sAq1YdAphq6lvytP7yEgN+TI5xQVi1MWh7fJZzbmr0hc7oIEBbyaY9Pn/y26PM/
+
+        NdGcgKaj2PAQEsgdvRvYMc5pSPKEy3ZZVMks8Uk2BuYJhyHC+hRt4H82xXp+6klb
+
+        aKhnfLPppnZtu2ZukjLAYw8CgYAOIqOWc4bTsDqXg3toZfv9yFCIMr4dd1OUFqsx
+
+        1e0L5G9ymvR2fj7cc2/LFGCxIoGPg/e5+/i2TjM8q4ln91gixDPpna46S/ALxAP1
+
+        92MXIVMHPl4S7Zylc+aw1stFNVbJjS17Oum0LRNdxOXTiNiX7JPYOaysdGQJjSKn
+
+        zSVwcQKBgQC+T6SBXSPtDC1zW09pTkfJxKnqs9z/5X/V446OHmeSWtYe9UQJSjQL
+
+        fYU04GDeArKIXe9BOkgelTPAxikGbSowbemJbOzTH6zTfJtlycQeJsmdDTAyhF1U
+
+        BoZHIGpxPv5F9NNeqSEAmE2C35ar8oA6/26kwnd1vUbVi1dMfegqiw==
+
+        -----END RSA PRIVATE KEY-----
+
+        '
+      sni:
+      - abc.test.com
+      - def.t.cn
+      status: 1
+    ngx_hosts:
+      line: 4
+      value:
+      - abc.test.com
+      - def.t.cn
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - abc.test.com
+        - def.t.cn
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers:
+              a-test: helloA
+              b-test: helloB
+              connection: ''
+              host: $http_host
+              proxy-t1: proxy-v1
+              x-forwarded-for: $proxy_add_x_forwarded_for
+            uri: /test/$uri
+          response-rewrite:
+            disable: false
+            headers:
+              mytestheader: hahadfeafe
+        priority: 20
+        status: 1
+        timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+        uris:
+        - /test/*
+      directive: location
+      file: nginx.conf
+      line: 21
+      value:
+        ngx_url: /test/
+        ngx_url_op: null
+        proxy_pass_upstream_format: 1
+        proxy_pass_upstream_name: vua-dashboar
+        proxy_timeout:
+          connect: '60'
+          read: '15'
+          send: '6'
+- directive: server
+  file: server1.conf
+  line: 1
+  value:
+    ngx_hosts:
+      line: 3
+      value:
+      - domain2.com
+      - www.domain2.com
+    ngx_locations:
+    - apisix_router:
+        hosts:
+        - domain2.com
+        - www.domain2.com
+        methods:
+        - GET
+        - HEAD
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+        - PATCH
+        plugins:
+          proxy-rewrite:
+            disable: false
+            headers: {}
+            uri: /$uri
+          response-rewrite:
+            disable: false
+        priority: 20
+        status: 1
+        timeout:
+          connect: null
+          read: null
+          send: null
+        uris:
+        - /*
+      directive: location
+      file: server1.conf
+      line: 7
+      value:
+        ngx_url: /
+        ngx_url_op: null
+        proxy_pass_upstream_format: 0
+        proxy_pass_upstream_name: 127.0.0.1:808
+        proxy_timeout:
+          connect: null
+          read: null
+          send: null
+NGINXUpstream:
+- apisix_upstream:
+    hash_on: $client_ip
+    name: vua-dashboard
+    nodes:
+    - 'host:': 10.193.49.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.139:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.193.63.160:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.65.134:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.103.152:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.39:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.40:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.43:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.146:18080
+      priority: 10
+      weight: 1
+    - 'host:': 10.102.100.147:18080
+      priority: 10
+      weight: 1
+    retries: 3
+    timeout:
+      connect: 10
+      read: 10
+      send: 10
+    type: chash
+  directive: upstream
+  file: upstream.conf
+  line: 1
+  value:
+    ngx_servers:
+    - host: 10.193.49.139:18080
+      weight: 1
+    - host: 10.193.63.139:18080
+      weight: 1
+    - host: 10.193.63.160:18080
+      weight: 1
+    - host: 10.102.65.134:18080
+      weight: 1
+    - host: 10.102.103.152:18080
+      weight: 1
+    - host: 10.102.100.39:18080
+      weight: 1
+    - host: 10.102.100.40:18080
+      weight: 1
+    - host: 10.102.100.43:18080
+      weight: 1
+    - host: 10.102.100.146:18080
+      weight: 1
+    - host: 10.102.100.147:18080
+      weight: 1
+    ngx_upstream_name: vua-dashboard
+NotImplBlock: []
+NotSupportBlock:
+- directive: listen
+  file: nginx.conf
+  line: 3
+- directive: charset
+  file: nginx.conf
+  line: 5
+- directive: listen
+  file: server1.conf
+  line: 2
+- directive: access_log
+  file: server1.conf
+  line: 4
+- directive: check
+  file: upstream.conf
+  line: 13
+- directive: check_keepalive_requests
+  file: upstream.conf
+  line: 14
+- directive: check_http_send
+  file: upstream.conf
+  line: 15
+- directive: check_http_expect_alive
+  file: upstream.conf
+  line: 16
+- directive: keepalive
+  file: upstream.conf
+  line: 17
+- directive: if
+  file: server1.conf
+  line: 9
+block_parsed_error: []
+file: ./test_cases/t1\nginx.conf
+parse_exception_blocks: []
+parse_not_total_blocks:
+- directive: server
+  file: upstream.conf
+  line: 3
+- directive: server
+  file: upstream.conf
+  line: 4
+- directive: server
+  file: upstream.conf
+  line: 5
+- directive: server
+  file: upstream.conf
+  line: 6
+- directive: server
+  file: upstream.conf
+  line: 7
+- directive: server
+  file: upstream.conf
+  line: 8
+- directive: server
+  file: upstream.conf
+  line: 9
+- directive: server
+  file: upstream.conf
+  line: 10
+- directive: server
+  file: upstream.conf
+  line: 11
+- directive: server
+  file: upstream.conf
+  line: 12
